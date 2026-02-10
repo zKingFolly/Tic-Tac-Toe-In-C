@@ -9,9 +9,14 @@ void displayGrid(char board[3][3])
         for (int j = 0; j < 3; j++)
         {
             printf(" %c ", board[i][j]);
+            if (j < 2)
+                printf("|");
         }
-        printf("\n \n");
+        printf("\n");
+        if (i < 2)
+            printf("---|---|---\n");
     }
+    printf("\n");
 }
 int main()
 {
