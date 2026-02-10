@@ -22,11 +22,10 @@ int main()
 
     bool isRunning = true; // while the game is running from the first to 9th round
     int rounds = 1;        // this is the rounds of play, x goes first in round1 o goes next in round 2
-    char oneWon[5] = " ";
-    char twoWon[5] = " ";
+    bool oneWon = false;
+    bool twoWon = false;
     int posToPlay = 0; // this if for the players to put in a position to play
-    int *pointerposToPlay = &posToPlay;
-    while (isRunning) // game loop
+    while (isRunning)  // game loop
     {
         if (rounds > 9)
         {                      // there are 9 squares to be played in, so the person shouldnt be able
@@ -89,7 +88,7 @@ int main()
 
             if ((board[0][0] == board[0][1]) && (board[0][1] == board[0][2]) || (board[1][0] == board[1][1]) && (board[1][1] == board[1][2]) || (board[2][0] == board[2][1]) && (board[2][1] == board[2][2]) || (board[0][0] == board[1][0]) && (board[1][0] == board[2][0]) || (board[0][1] == board[1][1]) && (board[1][1] == board[2][1]) || (board[0][2] == board[1][2]) && (board[1][2] == board[2][2]) || (board[0][0] == board[1][1]) && (board[1][1] == board[2][2]) || (board[0][2] == board[1][1]) && (board[1][1] == board[2][0]))
             {
-                snprintf(twoWon, sizeof(twoWon), "Yes");
+                twoWon = true;
                 isRunning = false;
                 break;
             }
@@ -99,7 +98,6 @@ int main()
         else
         {
             displayGrid(board);
-
             printf("Player 1, please pick a number to play: ");
             scanf("%d", &posToPlay);
 
@@ -157,24 +155,23 @@ int main()
 
             if ((board[0][0] == board[0][1]) && (board[0][1] == board[0][2]) || (board[1][0] == board[1][1]) && (board[1][1] == board[1][2]) || (board[2][0] == board[2][1]) && (board[2][1] == board[2][2]) || (board[0][0] == board[1][0]) && (board[1][0] == board[2][0]) || (board[0][1] == board[1][1]) && (board[1][1] == board[2][1]) || (board[0][2] == board[1][2]) && (board[1][2] == board[2][2]) || (board[0][0] == board[1][1]) && (board[1][1] == board[2][2]) || (board[0][2] == board[1][1]) && (board[1][1] == board[2][0]))
             {
-                snprintf(oneWon, sizeof(oneWon), "Yes");
+                oneWon = true;
                 isRunning = false;
                 break;
             }
         }
     }
-
     if (rounds == 9)
     {
         displayGrid(board);
         printf("It is a draw");
     }
-    else if (oneWon, "Yes")
+    else if (oneWon)
     {
         displayGrid(board);
         printf("Player One wins!!!!!");
     }
-    else if (twoWon == "Yes")
+    else if (twoWon)
     {
         displayGrid(board);
         printf("Player Two wins!!!!!");
